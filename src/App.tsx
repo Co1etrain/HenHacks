@@ -30,8 +30,7 @@ function App(): JSX.Element {
                             style={{
                                 width: 100,
                                 height: 100,
-                                backgroundColor: "red",
-                                margin: "center"
+                                backgroundColor: "red"
                             }}
                         ></div>
                     </Col>
@@ -40,8 +39,7 @@ function App(): JSX.Element {
                             style={{
                                 width: 100,
                                 height: 100,
-                                backgroundColor: "red",
-                                margin: "center"
+                                backgroundColor: "red"
                             }}
                         ></div>
                     </Col>
