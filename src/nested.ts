@@ -70,7 +70,7 @@ export function getNames(questions: Question[]): string[] {
  */
 export function sumPoints(questions: Question[]): number {
     const sum = questions.reduce(
-        (currentSum: number, question: Question) =>
+        (currentSum: number, question: Question): number =>
             currentSum + question.points,
         0
     );
@@ -139,10 +139,12 @@ export function makeAnswers(questions: Question[]): Answer[] {
  * each question is now published, regardless of its previous published status.
  */
 export function publishAll(questions: Question[]): Question[] {
-    return questions.map((question: Question) => ({
-        ...question,
-        published: true
-    }));
+    return questions.map(
+        (question: Question): Question => ({
+            ...question,
+            published: true
+        })
+    );
 }
 
 /***
@@ -259,11 +261,15 @@ export function duplicateQuestionInArray(
     targetId: number,
     newId: number
 ): Question[] {
-    return questions.flatMap((question: Question): Question => {
-        if (question.id === targetId) {
-            console.log([question, duplicateQuestion(newId, question)]);
-            return [question, duplicateQuestion(newId, question)];
-        }
-        return [question];
-    });
+    const index = questions.findIndex(
+        (question: Question): boolean => question.id === targetId
+    );
+
+    const targetQuestion = questions[index];
+    const duplicatedQuestion = duplicateQuestion(newId, targetQuestion);
+
+    const newQuestions = [...questions];
+    newQuestions.splice(index + 1, 0, duplicatedQuestion);
+
+    return newQuestions;
 }
