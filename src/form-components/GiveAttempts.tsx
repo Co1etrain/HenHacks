@@ -1,25 +1,24 @@
 import React, { useState } from "react";
+import { Form } from "react-bootstrap";
 
 export function GiveAttempts(): JSX.Element {
     const [attemptsLeft, setAttemptsLeft] = useState(3);
     const [requestedAttempts, setRequestedAttempts] = useState(0);
 
-    const handleRequestChange = (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
+    const requestChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = parseInt(event.target.value);
         if (!isNaN(value)) {
             setRequestedAttempts(value);
         }
     };
 
-    const handleUseAttempt = () => {
+    const useAttempt = () => {
         if (attemptsLeft > 0) {
             setAttemptsLeft(attemptsLeft - 1);
         }
     };
 
-    const handleGainAttempt = () => {
+    const gainAttempt = () => {
         if (requestedAttempts > 0) {
             setAttemptsLeft(attemptsLeft + requestedAttempts);
             setRequestedAttempts(0);
@@ -29,16 +28,21 @@ export function GiveAttempts(): JSX.Element {
     return (
         <div>
             <h3>Give Attempts</h3>
-            <p>Attempts left: {attemptsLeft}</p>
-            <button onClick={handleUseAttempt} disabled={attemptsLeft === 0}>
+            <div>Attempts left: {attemptsLeft}</div>
+            <button onClick={useAttempt} disabled={attemptsLeft === 0}>
                 Use
             </button>
-            <input
+            <Form.Control
                 type="number"
                 value={requestedAttempts}
-                onChange={handleRequestChange}
+                onChange={requestChange}
+                style={{
+                    padding: "10px",
+                    marginTop: "10px",
+                    width: "200px"
+                }}
             />
-            <button onClick={handleGainAttempt}>Gain</button>
+            <button onClick={gainAttempt}>Gain</button>
         </div>
     );
 }

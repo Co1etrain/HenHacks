@@ -12,14 +12,14 @@ export function MultipleChoiceQuestion({
 
     const isAnswerCorrect = selectedOption === expectedAnswer;
 
-    function handleOptionChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    function optionChange(event: React.ChangeEvent<HTMLSelectElement>) {
         setSelectedOption(event.target.value);
     }
 
     return (
         <div>
             <h3>Multiple Choice Question</h3>
-            <Form.Select value={selectedOption} onChange={handleOptionChange}>
+            <Form.Select value={selectedOption} onChange={optionChange}>
                 {options.map((option: string) => (
                     <option key={option} value={option}>
                         {option}

@@ -4,7 +4,7 @@ import { Form } from "react-bootstrap";
 export function ChangeColor(): JSX.Element {
     const [color, setColor] = useState("");
 
-    const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const colorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setColor(event.target.value);
     };
 
@@ -29,7 +29,7 @@ export function ChangeColor(): JSX.Element {
                     label={colorOption}
                     value={colorOption}
                     checked={color === colorOption}
-                    onChange={handleColorChange}
+                    onChange={colorChange}
                     key={colorOption}
                 />
             ))}

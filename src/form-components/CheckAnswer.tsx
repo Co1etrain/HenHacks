@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form } from "react-bootstrap";
 
 export function CheckAnswer({
     expectedAnswer
@@ -7,7 +8,7 @@ export function CheckAnswer({
 }): JSX.Element {
     const [userAnswer, setUserAnswer] = useState("");
 
-    const handleAnswerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const answerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUserAnswer(event.target.value);
     };
 
@@ -16,10 +17,10 @@ export function CheckAnswer({
     return (
         <div>
             <h3>Check Answer</h3>
-            <input
+            <Form.Control
                 type="text"
                 value={userAnswer}
-                onChange={handleAnswerChange}
+                onChange={answerChange}
             />
             {isAnswerCorrect ? (
                 <span style={{ color: "green" }}>✔️</span>

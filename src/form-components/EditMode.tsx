@@ -6,19 +6,19 @@ export function EditMode(): JSX.Element {
     const [userName, setUserName] = useState("Your Name");
     const [isStudent, setIsStudent] = useState(true);
 
-    const handleNameChange = (event: {
+    const nameChange = (event: {
         target: { value: React.SetStateAction<string> };
     }) => {
         setUserName(event.target.value);
     };
 
-    const handleStudentChange = (event: {
+    const studentChange = (event: {
         target: { checked: boolean | ((prevState: boolean) => boolean) };
     }) => {
         setIsStudent(event.target.checked);
     };
 
-    const handleEditModeChange = () => {
+    const editModeChange = () => {
         setIsEditMode(!isEditMode);
     };
 
@@ -31,7 +31,7 @@ export function EditMode(): JSX.Element {
                         <input
                             type="text"
                             value={userName}
-                            onChange={handleNameChange}
+                            onChange={nameChange}
                         />
                     </Form.Label>
                     <br />
@@ -40,7 +40,7 @@ export function EditMode(): JSX.Element {
                         <input
                             type="checkbox"
                             checked={isStudent}
-                            onChange={handleStudentChange}
+                            onChange={studentChange}
                         />
                     </Form.Label>
                 </div>
@@ -52,7 +52,7 @@ export function EditMode(): JSX.Element {
             <Form.Check
                 type="switch"
                 label={isEditMode ? "Save" : "Edit"}
-                onChange={handleEditModeChange}
+                onChange={editModeChange}
             />
         </div>
     );
